@@ -1,6 +1,7 @@
 package com.alibaba.blog_module.controller.demo;
 
 import com.alibaba.blog_common.pojo.Student;
+import como.alibaba.blog_server.redis.RedisService;
 import como.alibaba.blog_server.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,11 +25,13 @@ import java.util.List;
 public class DemoController {
     @Autowired
     DemoService demoService;
+    @Autowired
+    RedisService redisService;
 
     @RequestMapping("/get")
     @ResponseBody
     public List<Student> tedt(){
-
+        Integer set = redisService.set("", "");
         List<Student> all = demoService.all();
         return demoService.all();
     }
